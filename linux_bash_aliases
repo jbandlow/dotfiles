@@ -1,8 +1,16 @@
+# Common CLI commands
+alias byobu='byobu-screen'  # tmux doesn't resize well.
+
+# ls
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -F'
+
 # grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Tasks
-alias t='cat ~/tasks.otl'
-alias et='vim ~/tasks.otl'
+alias t='cat /Users/jbandlow/tasks.otl'
+alias et='vim /Users/jbandlow/tasks.otl'
