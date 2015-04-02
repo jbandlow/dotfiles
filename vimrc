@@ -14,6 +14,9 @@ Plugin 'gmarik/Vundle.vim'
 " Tim Pope's sensible ooptions.
 Plugin 'tpope/vim-sensible'
 
+" Nice grep
+Plugin 'vim-scripts/grep.vim'
+
 " Seemless window motion between tmux and vim with C-<hjkl>.
 Plugin 'christoomey/vim-tmux-navigator'
 
@@ -32,10 +35,10 @@ Plugin 'google/vim-codefmt'
 Plugin 'google/vim-glaive'
 
 " Properly highlights JSON
-"Plugin 'elzr/vim-json'
+Plugin 'elzr/vim-json'
 
 " Nice file browswer
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " Manipulate surrounding text with 's'
 Plugin 'tpope/vim-surround'
@@ -47,7 +50,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'tmhedberg/matchit'
 
 " Better formatting for javascript files
-"Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+
+" Plugin for tern (code-awareness for javascript)
+" After installing, run 'npm install' in '.vim/tern_for_vim'
+" See https://github.com/Slava/tern-meteor for how to install meteor-specific
+" plugins on top of this.
+Plugin 'marijnh/tern_for_vim'
 
 " Formatting for React .jsx files
 "Plugin 'mxw/vim-jsx'
@@ -67,13 +77,15 @@ set expandtab           " The tab key is great.  Tabs suck.
 colo elflord            " Seems easiest to read
 set gfn=Monospace\ 10   " Seems easiest to read
 set number              " Go places with : without being Rainman
-set shiftwidth=2        " Google style recommended. I agree.
-set softtabstop=2       " Google style recommended. I agree.
+"set shiftwidth=2        " Google style recommended. I agree.
+"set softtabstop=2       " Google style recommended. I agree.
+set shiftwidth=4        " Workpop style.
+set softtabstop=4       " Workpop style.
 set visualbell          " Turn off beeping
 set ww=s,<,>,[,]        " Space and arrow keys should ignore end of lines
 
 " Tabs are the enemy and should be see. (They are fixed for Go below).
-set tabstop=8
+set tabstop=4
 
 " The default is \. Change this before sourcing packages.
 let mapleader = ","
@@ -93,9 +105,14 @@ imap <C-BS> ^W
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 
+" Format command
 map <leader>f :FormatCode<CR>
 map <leader>l :FormatLines<CR>
+map <leader>n :NERDTreeToggle<CR>
 
+" Tern commands (Move these to js only init)
+map <leader>d :TernDef<CR>
+map <leader>t :TernType<CR>
 """"""""""""""""""
 " FILE TYPES
 " Vim thinks .md is Modula-2

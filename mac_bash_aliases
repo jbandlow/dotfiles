@@ -1,6 +1,3 @@
-# Common CLI commands
-alias byobu='byobu-screen'  # tmux doesn't resize well.
-
 # ls
 alias ll='ls -alF'
 alias la='ls -A'
@@ -11,6 +8,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Tasks
-alias t='cat /Users/jbandlow/tasks.otl'
-alias et='vim /Users/jbandlow/tasks.otl'
+# Workpop
+alias wpstart='meteor --settings tests/settings/local.json'
+alias wp='cd /Users/jason/Programming/Jobby-Web'
+alias wpv='wp; vim `wfind "*.js"` `wfind "*.html"`'

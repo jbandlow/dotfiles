@@ -1,15 +1,13 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-source /Users/jbandlow/.bash_aliases
+source /Users/jason/.bash_aliases
 
 # Source git stuff
-if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash ]; then
-    . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
+if [ -f /Users/jason/bin/git-completion.bash ]; then
+    . /Users/jason/bin/git-completion.bash
 fi
-
-source /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
-
+source /Users/jason/bin/git-prompt.sh
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -56,7 +54,7 @@ unset color_prompt force_color_prompt
 set -o vi
 
 # Don't use /usr/bin: http://stackoverflow.com/questions/7211820
-export PATH="/opt/local/bin:$PATH:/usr/local/mysql/bin:/Applications/sage"
+export PATH="/opt/local/bin:$PATH:/usr/local/mysql/bin:/Users/jason/bin"
 export GOROOT="/usr/local/go"
 
 # pretty tabs
@@ -70,3 +68,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Set root workpop directory.
+export WP="/Users/jason/Programming/Jobby-Web"

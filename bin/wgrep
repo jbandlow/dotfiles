@@ -1,0 +1,3 @@
+#!/bin/bash
+export WP=/Users/jason/Programming/Jobby-Web
+grep -n "$1" `find $WP \( -path $WP/.git -o -path $WP/tests -o -path $WP/packages -o -path $WP/.meteor -o -name "*.swp" \) -prune -o -type d -o -print`

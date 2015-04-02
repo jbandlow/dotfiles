@@ -1,3 +1,10 @@
 [user]
-	email = jbandlow@gmail.com
 	name = Jason Bandlow
+	email = jbandlow@gmail.com
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	unstage = reset HEAD --
+[push]
+	default = simple
