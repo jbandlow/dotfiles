@@ -1,0 +1,3 @@
+#!/bin/bash
+export WP=/Users/jason/Programming/Workpop-Web
+find $WP \( -path $WP/.git -o -path $WP/.meteor -o -path $WP/.demeteorized -o -path $WP/packages/workpop-npm/.npm -o -path $WP/tests \) -prune -o -name "$1" -print

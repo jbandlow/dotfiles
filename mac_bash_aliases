@@ -10,5 +10,5 @@ alias egrep='egrep --color=auto'
 
 # Workpop
 alias wpstart='meteor --settings tests/settings/local.json'
-alias wp='cd /Users/jason/Programming/Jobby-Web'
+alias wp='cd /Users/jason/Programming/Workpop-Web'
 alias wpv='wp; vim `wfind "*.js"` `wfind "*.html"`'
