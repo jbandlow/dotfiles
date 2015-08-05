@@ -11,8 +11,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Tim Pope's sensible ooptions.
+" Tim Pope's sensible options.
 Plugin 'tpope/vim-sensible'
+
+" Tim Pope's package for making Vim git-aware.
+Plugin 'tpope/vim-fugitive'
+
+" Manipulate surrounding text with 's'
+Plugin 'tpope/vim-surround'
 
 " Nice grep
 Plugin 'vim-scripts/grep.vim'
@@ -34,17 +40,17 @@ Plugin 'google/vim-codefmt'
 " below.
 Plugin 'google/vim-glaive'
 
+" Watches for syntax errors
+Plugin 'scrooloose/syntastic'
+
 " Properly highlights JSON
 Plugin 'elzr/vim-json'
 
 " Nice file browswer
 Plugin 'scrooloose/nerdtree'
 
-" Manipulate surrounding text with 's'
-Plugin 'tpope/vim-surround'
-
 " Uniform commenting commands in any supported language
-"Plugin 'tomtom/tcomment_vim'
+Plugin 'tomtom/tcomment_vim'
 
 " % matches on tags (HTML, LaTeX, etc.)
 Plugin 'tmhedberg/matchit'
@@ -58,6 +64,13 @@ Plugin 'pangloss/vim-javascript'
 " See https://github.com/Slava/tern-meteor for how to install meteor-specific
 " plugins on top of this.
 Plugin 'marijnh/tern_for_vim'
+
+" Plugins for Pandoc
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+" Ag (:Ag stuff_to_grep_for)
+Plugin 'rking/ag.vim'
 
 " Formatting for React .jsx files
 "Plugin 'mxw/vim-jsx'
@@ -77,15 +90,13 @@ set expandtab           " The tab key is great.  Tabs suck.
 colo elflord            " Seems easiest to read
 set gfn=Monospace\ 10   " Seems easiest to read
 set number              " Go places with : without being Rainman
-"set shiftwidth=2        " Google style recommended. I agree.
-"set softtabstop=2       " Google style recommended. I agree.
-set shiftwidth=4        " Workpop style.
-set softtabstop=4       " Workpop style.
+set shiftwidth=2        " Google style recommended. I agree.
+set softtabstop=2       " Google style recommended. I agree.
 set visualbell          " Turn off beeping
 set ww=s,<,>,[,]        " Space and arrow keys should ignore end of lines
 
 " Tabs are the enemy and should be see. (They are fixed for Go below).
-set tabstop=4
+set tabstop=8
 
 " The default is \. Change this before sourcing packages.
 let mapleader = ","
@@ -113,6 +124,21 @@ map <leader>n :NERDTreeToggle<CR>
 " Tern commands (Move these to js only init)
 map <leader>d :TernDef<CR>
 map <leader>t :TernType<CR>
+
+" Git grep
+nmap <leader>g :Ag <C-R><C-W> *<CR>
+
+""""""""""""""""""""""""
+" SYNTASTIC
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 """"""""""""""""""
 " FILE TYPES
 " Vim thinks .md is Modula-2
@@ -121,6 +147,9 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Octave: .vim/syntax/octave.vim is from
 " http://www.vim.org/scripts/script.php?script_id=3600
 autocmd BufReadPost,BufNewFile *.m,*.oct set filetype=octave
+
+" Don't convert tabs to spaces in a tsv
+autocmd BufReadPost,BufNewFile *.tsv set noexpandtab
 """"""""""""""""""
 " PERSONAL HACKS
 " Avoid trailing whitespace
@@ -133,6 +162,7 @@ autocmd FileAppendPre * :call TrimWhiteSpace()
 autocmd FilterWritePre * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace()
 
+autocmd QuickFixCmdPost *grep* cwindow
 """"""""""""""""""
 " GO CONFIGURATION
 " Clear filetype flags before changing runtimepath to force Vim
@@ -145,4 +175,7 @@ autocmd BufWritePre * :call TrimWhiteSpace()
 
 " It's a good idea to call this at the end, after everything has loaded.
 " Can consider removing indent.
-filetype plugin indent on
+filetype plugin on
+
+" Python
+autocmd FileType python setlocal shiftwidth=2 softtabstop=2
