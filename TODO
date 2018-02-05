@@ -1,0 +1,46 @@
+I want an `install` script that configures a bunch of stuff.
+It should be based on components / packages. So I specify
+which packages I want to install, and each package installs a collection
+of components.
+
+Files should live in the dotfiles directory and be symlinked to the
+places they need to be.  Secrets should live in $HOME/secrets and be installed
+similarly. (This can be populated from an existing instance, or a USB
+key).
+
+Bash config
+  1. Handles linux and Mac
+  2. Handles bash aliases
+
+Git
+  1. Installs git config
+  2. NB: It's not useful to store a script to install git on github
+  3. Git completion?
+
+Tmux
+  1. Installs if not present ( brew / apt-get )
+  2. tmux conf
+
+Vim
+  1. Vimrc
+  2. Plugin install
+
+Terminals
+  1. Basic.terminal on Mac
+  2. Similar on Linux
+
+Ssh
+
+Ag
+
+Fzf
+
+Conda
+
+Jupyter / iPython / matplotlib / conda
+
+Docker / gcloud / k8s / aws (?)
+
+Npm / Nvm
+
+Password manager (?)
