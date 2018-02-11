@@ -3,12 +3,16 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -F'
 
-# grep
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+# tree
+alias tree='tree -C'
 
 # Workpop
-alias wpstart='meteor --settings tests/settings/local.json'
 alias wp='cd /Users/jason/Programming/Workpop-Web'
-alias wpv='wp; vim `wfind "*.js"` `wfind "*.html"`'
+alias wa='cd /Users/jason/Programming/Workpop-Analytics'
+
+# Kubernetes
+alias kc='kubectl'
+alias uc='kubectl config use-context'
+
+# Pandas
+alias pandas="ipython -c 'import pandas as pd' -i"
