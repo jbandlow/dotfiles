@@ -63,9 +63,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# Set root workpop directory.
-export WP="/Users/$USER/Programming/Workpop-Web"
-
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -73,10 +70,16 @@ export WP="/Users/$USER/Programming/Workpop-Web"
 #eval $(docker-machine env default)
 
 # added by Anaconda2 4.0.0 installer
-export PATH="/Users/jbandlow/anaconda2/bin:$PATH"
+export PATH="$HOME/anaconda2/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/jbandlow/Downloads/google-cloud-sdk/path.bash.inc'
+source '$HOME/Downloads/google-cloud-sdk/path.bash.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/Users/jbandlow/Downloads/google-cloud-sdk/completion.bash.inc'
+source '$HOME/Downloads/google-cloud-sdk/completion.bash.inc'
+
+# export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/usr/local/opt/mongodb@3.0/bin:/usr/local/opt/ipython@5/bin:$PATH"
+# export PYTHONPATH="/usr/local/lib/python2.7/site-packages/"

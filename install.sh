@@ -1,7 +1,6 @@
 #!/bin/bash
 
-DOTFILES=$HOME/dotfiles
-
+# TODO: Parameterize Linux package manager -- don't assume Debian
 # Determine the platform
 if [ "$(uname)" == "Darwin" ]; then
   PLATFORM="Mac"
@@ -9,12 +8,13 @@ else
   PLATFORM="Linux"
 fi;
 
-# Aliases
-if [ $PLATFORM == "Mac" ]; then
-  ln -f -s $DOTFILES/mac_bash_aliases $HOME/.bash_aliases
+if [[ $PLATFORM == "Mac" ]]; then
+  HOME="/Users/$USER"
 else
-  ln -f -s $DOTFILES/linux_bash_aliases $HOME/.bash_aliases
+  HOME="/home/$USER"
 fi;
+
+DOTFILES=$HOME/dotfiles
 
 if [[ $PLATFORM == "Mac" && -z "$(xcode-select -p)" ]]; then
   echo "Installing Xcode command line tools"
@@ -72,3 +72,16 @@ if [[ -z "$(command -v tree)" ]]; then
     sudo apt-get install tree
   fi;
 fi;
+
+# .bash_aliases
+if [ $PLATFORM == "Mac" ]; then
+  ln -f -s $DOTFILES/mac_bash_aliases $HOME/.bash_aliases
+else
+  ln -f -s $DOTFILES/linux_bash_aliases $HOME/.bash_aliases
+fi;
+
+# .bash_profile
+if [ $PLATFORM == "Mac" ]; then
+  ln -f -s $DOTFILES/bash_profile $HOME/.bash_profile
+fi;
+# TODO: audit linux version
