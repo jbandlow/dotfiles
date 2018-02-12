@@ -1,13 +1,6 @@
+#### Set up the prompt
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-
-source /Users/$USER/.bash_aliases
-
-# Source git stuff
-if [ -f /Users/$USER/bin/git-completion.bash ]; then
-    . /Users/$USER/bin/git-completion.bash
-fi
-source /Users/$USER/bin/git-prompt.sh
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -19,20 +12,13 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+else
+    color_prompt=
 fi
 
 # function to get just the last two dirs in the path to avoid long prompts
@@ -42,13 +28,21 @@ function last_two_dirs {
   pwd | sed "s*${PWD%/*/*}/**"
 }
 
+# Source git stuff for __git_ps1
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+    . /usr/local/etc/bash_completion.d/git-completion.bash
+    . /usr/local/etc/bash_completion.d/git-prompt.sh
+fi
+
 if [ "$color_prompt" = yes ]; then
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]Mac\[\033[00m\]:\[\033[01;34m\]$(last_two_dirs)\[\033[00m\]\
 \[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
 else
   PS1='${debian_chroot:+($debian_chroot)}\h:$(last_two_dirs)$(__git_ps1)\$ '
 fi
-unset color_prompt force_color_prompt
+unset color_prompt
+
+source /Users/$USER/.bash_aliases
 
 # Use vi bindings on the command line.
 set -o vi
@@ -70,4 +64,19 @@ shopt -s histappend                      # append to history, don't overwrite it
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Set root workpop directory.
-export WP="/Users/$USER/Programming/Jobby-Web"
+export WP="/Users/$USER/Programming/Workpop-Web"
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Docker
+#eval $(docker-machine env default)
+
+# added by Anaconda2 4.0.0 installer
+export PATH="/Users/jbandlow/anaconda2/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/jbandlow/Downloads/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/jbandlow/Downloads/google-cloud-sdk/completion.bash.inc'

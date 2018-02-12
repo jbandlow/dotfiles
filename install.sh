@@ -16,6 +16,11 @@ else
   ln -f -s $DOTFILES/linux_bash_aliases $HOME/.bash_aliases
 fi;
 
+if [[ $PLATFORM == "Mac" && -z "$(xcode-select -p)" ]]; then
+  echo "Installing Xcode command line tools"
+  xcode-select --install
+fi;
+
 # git
 ln -f -s $DOTFILES/gitconfig $HOME/.gitconfig
 
@@ -56,5 +61,14 @@ if [[ -z "$(command -v ag)" ]]; then
     brew install the_silver_searcher
   else
     sudo apt-get install silversearcher-ag
+  fi;
+fi;
+
+if [[ -z "$(command -v tree)" ]]; then
+  echo "Installing tree"
+  if [[ $PLATFORM == "Mac" ]]; then
+    brew install tree
+  else
+    sudo apt-get install tree
   fi;
 fi;
