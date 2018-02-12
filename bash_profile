@@ -73,10 +73,14 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export PATH="$HOME/anaconda2/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-source '$HOME/Downloads/google-cloud-sdk/path.bash.inc'
+if [ -f '$HOME/Downloads/google-cloud-sdk/path.bash.inc' ]; then
+  source '$HOME/Downloads/google-cloud-sdk/path.bash.inc'
+fi
 
 # The next line enables shell command completion for gcloud.
-source '$HOME/Downloads/google-cloud-sdk/completion.bash.inc'
+if [ -f '$HOME/Downloads/google-cloud-sdk/completion.bash.inc' ]; then
+  source '$HOME/Downloads/google-cloud-sdk/completion.bash.inc'
+fi
 
 # export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
