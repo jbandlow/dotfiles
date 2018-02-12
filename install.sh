@@ -64,12 +64,33 @@ if [[ -z "$(command -v ag)" ]]; then
   fi;
 fi;
 
+# tree
 if [[ -z "$(command -v tree)" ]]; then
   echo "Installing tree"
   if [[ $PLATFORM == "Mac" ]]; then
     brew install tree
   else
     sudo apt-get install tree
+  fi;
+fi;
+
+# pup
+if [[ -z "$(command -v pup)" ]]; then
+  echo "Installing pup"
+  if [[ $PLATFORM == "Mac" ]]; then
+    brew install pup
+  else
+    sudo apt-get install pup
+  fi;
+fi;
+
+# jq
+if [[ -z "$(command -v jq)" ]]; then
+  echo "Installing jq"
+  if [[ $PLATFORM == "Mac" ]]; then
+    brew install jq
+  else
+    sudo apt-get install jq
   fi;
 fi;
 
