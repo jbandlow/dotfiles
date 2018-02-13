@@ -30,9 +30,13 @@ Terminals
 
 Ssh
 
-X: Ag
+X: ag
 
-X: Fzf
+X: fzf
+
+X: tree
+
+tig
 
 Conda (This is heavy and should be optional)
 Jupyter / iPython / matplotlib / conda
