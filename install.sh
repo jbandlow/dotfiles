@@ -94,6 +94,12 @@ if [[ -z "$(command -v jq)" ]]; then
   fi;
 fi;
 
+# yq
+if [[ -z "$(command -v yq)" ]]; then
+  echo "Installing yq"
+  pip install yq
+fi;
+
 # .bash_aliases
 if [ $PLATFORM == "Mac" ]; then
   ln -f -s $DOTFILES/mac_bash_aliases $HOME/.bash_aliases
