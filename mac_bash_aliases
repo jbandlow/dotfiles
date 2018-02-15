@@ -7,8 +7,8 @@ alias l='ls -F'
 alias tree='tree -C'
 
 # Workpop
-alias wp='cd /Users/jason/Programming/Workpop-Web'
-alias wa='cd /Users/jason/Programming/Workpop-Analytics'
+alias wp="cd $HOME/Programming/Workpop-Web"
+alias wa="cd $HOME/Programming/Workpop-Analytics"
 
 # Kubernetes
 alias kc='kubectl'
