@@ -47,8 +47,6 @@ source /Users/$USER/.bash_aliases
 # Use vi bindings on the command line.
 set -o vi
 
-# Don't use /usr/bin: http://stackoverflow.com/questions/7211820
-export PATH="/opt/local/bin:$PATH:/usr/local/mysql/bin:/Users/$USER/bin"
 export GOROOT="/usr/local/go"
 
 # pretty tabs
@@ -66,12 +64,6 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Docker
-#eval $(docker-machine env default)
-
-# added by Anaconda2 4.0.0 installer
-export PATH="$HOME/anaconda2/bin:$PATH"
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/Downloads/google-cloud-sdk/path.bash.inc" ]; then
   source "$HOME/Downloads/google-cloud-sdk/path.bash.inc"
@@ -88,8 +80,22 @@ if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then
   source "$HOME/google-cloud-sdk/completion.bash.inc";
 fi
 
-# export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="/usr/local/opt/mongodb@3.0/bin:/usr/local/opt/ipython@5/bin:$PATH"
-# export PYTHONPATH="/usr/local/lib/python2.7/site-packages/"
+if [[ ! "$PATH" == *anaconda2/bin* ]]; then
+  # added by Anaconda2 4.0.0 installer
+  export PATH="$HOME/anaconda2/bin:$PATH"
+fi
+if [[ ! "$PATH" == */opt/local/bin* ]]; then
+  export PATH="/opt/local/bin:$PATH"
+fi
+if [[ ! "$PATH" == */usr/local/mysql/bin* ]]; then
+  export PATH="$PATH:/usr/local/mysql/bin"
+fi
+if [[ ! "$PATH" == *$HOME/bin* ]]; then
+  export PATH="$PATH:$HOME/bin"
+fi
+if [[ ! "$PATH" == */usr/local/opt* ]]; then
+  export PATH="/opt/local/bin:$PATH"
+fi
+if [[ ! "$PATH" == */usr/local/opt/mongodb@3.0/bin* ]]
+  export PATH="/usr/local/opt/mongodb@3.0/bin:$PATH"
+fi
