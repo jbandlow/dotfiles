@@ -96,6 +96,6 @@ fi
 if [[ ! "$PATH" == */usr/local/opt* ]]; then
   export PATH="/opt/local/bin:$PATH"
 fi
-if [[ ! "$PATH" == */usr/local/opt/mongodb@3.0/bin* ]]
+if [[ ! "$PATH" == */usr/local/opt/mongodb@3.0/bin* ]]; then
   export PATH="/usr/local/opt/mongodb@3.0/bin:$PATH"
 fi
