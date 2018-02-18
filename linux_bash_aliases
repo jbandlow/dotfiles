@@ -1,16 +1,15 @@
-# Common CLI commands
-alias byobu='byobu-screen'  # tmux doesn't resize well.
-
 # ls
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -F'
 
-# grep
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+# Workpop
+alias wp="cd $HOME/Programming/Workpop-Web"
+alias wa="cd $HOME/Programming/Workpop-Analytics"
 
-# Tasks
-alias t='cat /Users/jbandlow/tasks.otl'
-alias et='vim /Users/jbandlow/tasks.otl'
+# Kubernetes
+alias kc='kubectl'
+alias uc='kubectl config use-context'
+
+# Pandas
+alias pandas="ipython -c 'import pandas as pd' -i"

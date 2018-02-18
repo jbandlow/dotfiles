@@ -1,0 +1,23 @@
+# ====================CONFIG THIS =============================== #
+COLOR_01="#333333"           # HOST
+COLOR_02="#f15d5d"           # SYNTAX_STRING
+COLOR_03="#4e9a06"           # COMMAND
+COLOR_04="#c4a000"           # COMMAND_COLOR2
+COLOR_05="#3465a4"           # PATH
+COLOR_06="#75507b"           # SYNTAX_VAR
+COLOR_07="#06989a"           # PROMPT
+COLOR_08="#d3d7cf"           #
+
+COLOR_09="#88807c"           #
+COLOR_10="#f15d22"           # COMMAND_ERROR
+COLOR_11="#73c48f"           # EXEC
+COLOR_12="#ffce51"           #
+COLOR_13="#48b9c7"           # FOLDER
+COLOR_14="#ad7fa8"           #
+COLOR_15="#34e2e2"           #
+COLOR_16="#eeeeec"           #
+
+BACKGROUND_COLOR="#333333"   # Background Color
+FOREGROUND_COLOR="#eeeeec"   # Text
+
+# TODO: Explore using this with https://github.com/Mayccoll/Gogh

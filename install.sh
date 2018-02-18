@@ -80,7 +80,7 @@ if [[ -z "$(command -v pup)" ]]; then
   if [[ $PLATFORM == "Mac" ]]; then
     brew install pup
   else
-    sudo apt-get install pup
+    go get github.com/ericchiang/pup
   fi;
 fi;
 
