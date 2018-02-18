@@ -41,6 +41,16 @@ if [[ -z "$(command -v tmux)" ]]; then
 fi;
 ln -f -s $DOTFILES/tmux.conf $HOME/.tmux.conf
 
+# fd
+if [[ -z "$(command -v fd)" ]]; then
+  if [[ $PLATFORM == "Mac" ]]; then
+    echo "Installing fd"
+    brew install fd
+  fi
+  # TODO: Linux
+fi
+
+# TODO: Update .fzf.bash to use fd instead of find if present
 # fzf
 if [[ -z "$(command -v fzf)" ]]; then
   echo "Installing fzf"
