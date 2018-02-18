@@ -1,16 +1,23 @@
 # Setup fzf
 # ---------
 
-# TODO: Split on /usr/local/opt/fzf vs /usr/local/src/fzf
-if [[ ! "$PATH" == */usr/local/src/fzf/bin* ]]; then
-  export PATH="$PATH:/usr/local/src/fzf/bin"
-fi
+if [[ -d /usr/local/src/fzf ]]; then
+  FZF_DIR='/usr/local/src/fzf';
+elif [[ -d /usr/local/opt/fzf ]]; then
+  FZF_DIR='/usr/local/opt/fzf';
+fi;
 
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "/usr/local/src/fzf/shell/completion.bash" 2> /dev/null
+if [[ -n FZF_DIR ]]; then
+  if [[ ! "$PATH" == *$FZF_DIR/bin* ]]; then
+    export PATH="$PATH:$FZF_DIR/bin"
+  fi
 
-# Key bindings
-# ------------
-source "/usr/local/src/fzf/shell/key-bindings.bash"
+  # Auto-completion
+  # ---------------
+  [[ $- == *i* ]] && source "$FZF_DIR/shell/completion.bash" 2> /dev/null
+
+  # Key bindings
+  # ------------
+  source "$FZF_DIR/shell/key-bindings.bash"
+fi;
 
