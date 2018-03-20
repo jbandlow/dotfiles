@@ -5,6 +5,8 @@ if [[ -d /usr/local/src/fzf ]]; then
   FZF_DIR='/usr/local/src/fzf';
 elif [[ -d /usr/local/opt/fzf ]]; then
   FZF_DIR='/usr/local/opt/fzf';
+elif [[ -d $HOME/.fzf ]]; then
+  FZF_DIR="$HOME/.fzf"
 fi;
 
 if [[ -n FZF_DIR ]]; then
