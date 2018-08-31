@@ -13,3 +13,9 @@ alias uc='kubectl config use-context'
 
 # Pandas
 alias pandas="ipython -c 'import pandas as pd' -i"
+
+# Chromebook helper
+alias localip='ifconfig | ag inet | head -n 1'
+
+# Hugo helper
+alias hugoserver="hugo --bind=0.0.0.0 -b http://100.115.92.2:1313/ server -v --buildDrafts --disableFastRender"

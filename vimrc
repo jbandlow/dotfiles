@@ -1,89 +1,25 @@
 set nocompatible
-""""""""""""""""""""""""""""
-" Packages managed by Vundle
-filetype off                  " required
-" To install plugins use
-"   :PluginInstall
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Tim Pope's sensible options.
-Plugin 'tpope/vim-sensible'
-
-" Tim Pope's package for making Vim git-aware.
-Plugin 'tpope/vim-fugitive'
-
-" Manipulate surrounding text with 's'
-Plugin 'tpope/vim-surround'
-
-" Nice grep
-Plugin 'vim-scripts/grep.vim'
+"""""""""
+" Plugins
+call plug#begin()
+" Tim Pope-fest:
+Plug 'tpope/vim-sensible'  " Sensible defaults
+Plug 'tpope/vim-fugitive'  " Git awareness
+Plug 'tpope/vim-surround'  " Surround text
 
 " Seemless window motion between tmux and vim with C-<hjkl>.
-Plugin 'christoomey/vim-tmux-navigator'
-
-" Google formatting
-Plugin 'google/vim-maktaba'
-Plugin 'google/vim-codefmtlib'
-" WARNING: I hacked autoload/codefmt.vim
-" to add
-"   \ '--indent-size', ''.&sw,
-" to the 'let l:cmd = ' lines of the autopep section.
-Plugin 'google/vim-codefmt'
-" Also add Glaive, which is used to configure codefmt's maktaba flags. See
-" `:help :Glaive` for usage.
-" If this is commented out, be sure to also comment out the configuration
-" below.
-Plugin 'google/vim-glaive'
-
-" Watches for syntax errors
-Plugin 'scrooloose/syntastic'
-
-" Properly highlights JSON
-Plugin 'elzr/vim-json'
-
-" Nice file browswer
-Plugin 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Uniform commenting commands in any supported language
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
 " % matches on tags (HTML, LaTeX, etc.)
-Plugin 'tmhedberg/matchit'
-
-" Better formatting for javascript files
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-
-" Plugin for tern (code-awareness for javascript)
-" After installing, run 'npm install' in '.vim/tern_for_vim'
-" See https://github.com/Slava/tern-meteor for how to install meteor-specific
-" plugins on top of this.
-Plugin 'marijnh/tern_for_vim'
-
-" Plugins for Pandoc
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tmhedberg/matchit'
 
 " Ag (:Ag stuff_to_grep_for)
-Plugin 'rking/ag.vim'
+Plug 'rking/ag.vim'
 
-" Formatting for React .jsx files
-"Plugin 'mxw/vim-jsx'
-
-" Takes time to learn, but invaluable for heavy duty LaTeX.
-"Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
-"
-call vundle#end()
-" Finish Google Formatting Initialization
-call glaive#Install()
-" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
-Glaive codefmt plugin[mappings]
-
+call plug#end()
 """"""""""""""""""
 " STANDARD VIM SETTINGS
 set expandtab           " The tab key is great.  Tabs suck.
@@ -121,10 +57,6 @@ map <leader>f :FormatCode<CR>
 map <leader>l :FormatLines<CR>
 map <leader>n :NERDTreeToggle<CR>
 
-" Tern commands (Move these to js only init)
-map <leader>d :TernDef<CR>
-map <leader>t :TernType<CR>
-
 " Git grep
 nmap <leader>g :Ag <C-R><C-W> *<CR>
 
@@ -134,10 +66,10 @@ nmap <leader>g :Ag <C-R><C-W> *<CR>
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 """"""""""""""""""
 " FILE TYPES

@@ -62,13 +62,15 @@ function last_two_dirs {
   # show up as a char in my path
   pwd | sed "s*${PWD%/*/*}/**"
 }
-
-source /etc/bash_completion.d/git-prompt
+color_prompt=yes
+#source /etc/bash_completion.d/git-prompt
 if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]$(last_two_dirs)\[\033[00m\]\
-\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]$(last_two_dirs)\[\033[00m\]\$ '
+  #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]$(last_two_dirs)\[\033[00m\]\
+  #\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
 else
-  PS1='${debian_chroot:+($debian_chroot)}\h:$(last_two_dirs)$(__git_ps1)\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\h:$(last_two_dirs)\$ '
+  #PS1='${debian_chroot:+($debian_chroot)}\h:$(last_two_dirs)$(__git_ps1)\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -131,5 +133,9 @@ fi
 set -o vi
 export EDITOR='/usr/bin/vim'
 
-# added by Anaconda2 4.0.0 installer
-export PATH="/home/jbandlow/anaconda2/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+
+export PATH="/data/data/com.termux/files/home/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
