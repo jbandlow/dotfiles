@@ -1,37 +1,76 @@
 set nocompatible
-"""""""""
-" Plugins
-call plug#begin()
-" Tim Pope-fest:
-Plug 'tpope/vim-sensible'  " Sensible defaults
-Plug 'tpope/vim-fugitive'  " Git awareness
-Plug 'tpope/vim-surround'  " Surround text
 
-" Seemless window motion between tmux and vim with C-<hjkl>.
+" Autodownload plug if not present
+if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+
+" Tim Pope's sensible options.
+Plug 'tpope/vim-sensible'
+
+" Tim Pope's package for making Vim git-aware.
+Plug 'tpope/vim-fugitive'
+
+" Manipulate surrounding text with 's'
+Plug 'tpope/vim-surround'
+
+" Seamless window motion between tmux and vim with C-<hjkl>.
 Plug 'christoomey/vim-tmux-navigator'
 
 " Uniform commenting commands in any supported language
 Plug 'tomtom/tcomment_vim'
 
-" % matches on tags (HTML, LaTeX, etc.)
-Plug 'tmhedberg/matchit'
+" Properly highlights JSON
+Plug 'elzr/vim-json'
 
-" Ag (:Ag stuff_to_grep_for)
-Plug 'rking/ag.vim'
+" Nice file browswer
+Plug 'scrooloose/nerdtree'
+
+" Ag (:Ag stuff_to_ag_for)
+Plug 'mileszs/ack.vim'
+
+Plug 'lepture/vim-jinja'
+let g:ackprg = 'ag --vimgrep'
+cnoreabbrev Ag Ack!
+nnoremap <Leader>a :Ack!<Space>
+nmap <leader>g :Ack! <C-R><C-W><CR>
+
+" <F7> to run flake8. Call on save for python files.
+Plug 'nvie/vim-flake8'
+autocmd BufWritePost *.py call Flake8()
+
+" Autoformat on save. Uses yapf with pep8 styling by default for Python.
+Plug 'Chiel92/vim-autoformat'
+au BufWrite *.py :Autoformat
+" Prefer yapf for python
+let g:formatters_python = ['yapf', 'autopep8']
+" disable autoindent for filetypes that have incompetent indent files
+autocmd FileType vim,tex let g:autoformat_autoindent=0
+
+" Pep8 line width (79 for code and 72 for comments)
+Plug 'jimf/vim-pep8-text-width'
+
+" fzf
+Plug '/usr/local/src/fzf'
+nnoremap <Leader>f :FZF<CR>
+
 
 call plug#end()
 """"""""""""""""""
 " STANDARD VIM SETTINGS
+let $BASH_ENV = '$HOME/.bash_aliases'
 set expandtab           " The tab key is great.  Tabs suck.
 colo elflord            " Seems easiest to read
 set gfn=Monospace\ 10   " Seems easiest to read
 set number              " Go places with : without being Rainman
-set shiftwidth=2        " Google style recommended. I agree.
-set softtabstop=2       " Google style recommended. I agree.
 set visualbell          " Turn off beeping
 set ww=s,<,>,[,]        " Space and arrow keys should ignore end of lines
 
-" Tabs are the enemy and should be see. (They are fixed for Go below).
+" Tabs are the enemy and should be seen.
 set tabstop=8
 
 " The default is \. Change this before sourcing packages.
@@ -52,25 +91,6 @@ imap <C-BS> ^W
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 
-" Format command
-map <leader>f :FormatCode<CR>
-map <leader>l :FormatLines<CR>
-map <leader>n :NERDTreeToggle<CR>
-
-" Git grep
-nmap <leader>g :Ag <C-R><C-W> *<CR>
-
-""""""""""""""""""""""""
-" SYNTASTIC
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
 """"""""""""""""""
 " FILE TYPES
 " Vim thinks .md is Modula-2
@@ -86,28 +106,14 @@ autocmd BufReadPost,BufNewFile *.tsv set noexpandtab
 " PERSONAL HACKS
 " Avoid trailing whitespace
 function! TrimWhiteSpace()
-  %s/\s*$//
-  ''
+    %s/\s*$//
+    ''
 :endfunction
+
 autocmd FileWritePre * :call TrimWhiteSpace()
 autocmd FileAppendPre * :call TrimWhiteSpace()
 autocmd FilterWritePre * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace()
 
-autocmd QuickFixCmdPost *grep* cwindow
-""""""""""""""""""
-" GO CONFIGURATION
-" Clear filetype flags before changing runtimepath to force Vim
-" to reload them.
-"filetype off
-"filetype plugin indent off
-"set runtimepath+=$GOROOT/misc/vim
-"   formatting
-"autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
-" It's a good idea to call this at the end, after everything has loaded.
-" Can consider removing indent.
-filetype plugin on
-
-" Python
-autocmd FileType python setlocal shiftwidth=2 softtabstop=2
+" Compile LaTeX on save
+autocmd BufWritePost *.tex !latex --output-format=pdf <afile>
