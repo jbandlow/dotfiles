@@ -43,9 +43,10 @@ nmap <leader>g :Ack! <C-R><C-W><CR>
 Plug 'nvie/vim-flake8'
 autocmd BufWritePost *.py call Flake8()
 
-" Autoformat on save. Uses yapf with pep8 styling by default for Python.
+" Autoformat on save.
 Plug 'Chiel92/vim-autoformat'
 au BufWrite *.py :Autoformat
+au BufWrite *.cc :Autoformat
 " Prefer yapf for python
 let g:formatters_python = ['yapf', 'autopep8']
 " disable autoindent for filetypes that have incompetent indent files
@@ -102,6 +103,9 @@ autocmd BufReadPost,BufNewFile *.m,*.oct set filetype=octave
 
 " Don't convert tabs to spaces in a tsv
 autocmd BufReadPost,BufNewFile *.tsv set noexpandtab
+
+" I shouldn't need this, but I guess I do:
+autocmd BufReadPost,BufNewFile *.cc set shiftwidth=2
 """"""""""""""""""
 " PERSONAL HACKS
 " Avoid trailing whitespace
