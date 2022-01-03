@@ -56,7 +56,8 @@ autocmd FileType vim,tex let g:autoformat_autoindent=0
 Plug 'jimf/vim-pep8-text-width'
 
 " fzf
-Plug '/usr/local/src/fzf'
+" Plug '/usr/local/src/fzf'
+source $HOME/.fzf/plugin/fzf.vim
 nnoremap <Leader>f :FZF<CR>
 
 
@@ -106,6 +107,9 @@ autocmd BufReadPost,BufNewFile *.tsv set noexpandtab
 
 " I shouldn't need this, but I guess I do:
 autocmd BufReadPost,BufNewFile *.cc set shiftwidth=2
+
+" Sagemath is python
+autocmd BufNewFile,BufReadPost *.sage set filetype=python
 """"""""""""""""""
 " PERSONAL HACKS
 " Avoid trailing whitespace

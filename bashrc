@@ -131,5 +131,8 @@ fi
 set -o vi
 export EDITOR='/usr/bin/vim'
 
-# added by Anaconda2 4.0.0 installer
-export PATH="/home/jbandlow/anaconda2/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin/"
+
+source $HOME/.fzf/shell/key-bindings.bash
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

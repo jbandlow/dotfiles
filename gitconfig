@@ -8,3 +8,5 @@
 	unstage = reset HEAD --
 [push]
 	default = simple
+[pull]
+	rebase = false
